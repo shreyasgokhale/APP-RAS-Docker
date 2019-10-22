@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y build-essential \
     python3-setuptools \
     wget \
     blender \
+    mesa-utils\
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -186,6 +187,8 @@ WORKDIR /
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 ENV MORSE_BLENDER=/usr/bin/blender
 ENV MORSE_SILENT_PYTHON_CHECK=1
+ENV NVIDIA_VISIBLE_DEVICES all
+
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]
